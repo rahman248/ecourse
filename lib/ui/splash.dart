@@ -56,7 +56,7 @@ class SplashScreenState extends State<SplashScreen>
               Padding(
                 padding: const EdgeInsets.only(bottom: 30.0),
                 child: Image.asset(
-                  '',
+                  'assets/images/copyrights.png',
                   height: 25.0,
                   fit: BoxFit.scaleDown,
                 ),
@@ -67,7 +67,7 @@ class SplashScreenState extends State<SplashScreen>
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.asset(
-                '',
+                'assets/images/bakrie.png',
                 width: animation.value * 250,
                 height: animation.value * 250,
               )

@@ -11,6 +11,21 @@ if (flutterRoot == null) {
     throw new FileNotFoundException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
+def flutterMinSdk = localProperties.getProperty('flutter.minSdkVersion')
+if (flutterMinSdk == null) {
+    flutterMinSdk = 21
+}
+
+def fluttertTargetSdk = localProperties.getProperty('flutter.targetSdkVersion')
+if (fluttertTargetSdk == null) {
+    fluttertTargetSdk = 31
+}
+
+def flutterCompileSdk = localProperties.getProperty('flutter.compileSdkVersion')
+if (flutterCompileSdk == null) {
+    flutterCompileSdk = 31
+}
+
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
     flutterVersionCode = '1'
@@ -45,8 +60,8 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.ecourse"
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion flutterMinSdk
+        targetSdkVersion fluttertTargetSdk
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
