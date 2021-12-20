@@ -99,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
               color: Colors.white,
-              fontFamily: 'OpenSans',
+              fontFamily: 'CM Sans Serif',
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -134,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
             obscureText: true,
             style: TextStyle(
               color: Colors.white,
-              fontFamily: 'OpenSans',
+              fontFamily: 'CM Sans Serif',
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -285,7 +285,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildSignupBtn() {
     return GestureDetector(
-      onTap: () => print('Sign Up Button Pressed'),
+      onTap: () => Navigator.of(context).pushNamed(SIGNUP_SCREEN),
       child: RichText(
         text: const TextSpan(
           children: [
