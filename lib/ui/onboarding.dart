@@ -1,7 +1,9 @@
 import 'package:ecourse/utils/constant.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -21,6 +23,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     }
     return list;
   }
+
+  _storeOnboardInfo() async {
+    if (kDebugMode) {
+      print("Shared pref called");
+    }
+
+    int isViewed = 0;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('initScreen', isViewed);
+    if (kDebugMode) {
+      print("Data Preference ${prefs.getInt('initScreen')}");
+    }
+  }
+
 
   Widget _indicator(bool isActive) {
     return AnimatedContainer(
@@ -64,8 +80,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   alignment: Alignment.centerRight,
                   margin: const EdgeInsets.only(right: 25),
                   child: ElevatedButton(
-                    onPressed: () => Navigator.of(context)
-                        .pushReplacementNamed(LOGIN_SCREEN),
+                    onPressed: () async {
+                      print("Data Page == $_currentPage");
+                      Navigator.of(context).pushReplacementNamed(LOGIN_SCREEN);
+                    },
                     child: const Text(
                       'Skip',
                       style: kLabelStyle,
@@ -222,8 +240,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               width: double.infinity,
               color: Colors.white,
               child: GestureDetector(
-                onTap: () =>
-                    Navigator.of(context).pushReplacementNamed(LOGIN_SCREEN),
+                onTap: () async {
+                  print("Data Page == $_currentPage");
+                  Navigator.of(context).pushReplacementNamed(NAV_SCREEN);
+
+                },
+
+                /*
+                    await _storeOnboardInfo();
+                    Navigator.of(context).pushReplacementNamed(LOGIN_SCREEN),*/
                 child: const Center(
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 30.0),

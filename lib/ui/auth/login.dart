@@ -48,7 +48,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: double.infinity,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 40.0,
-                  vertical: 80.0,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -199,21 +198,13 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildLoginBtn() {
-    final ButtonStyle style = ElevatedButton.styleFrom(
-        elevation: 5.0,
-        padding: const EdgeInsets.all(15.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        primary: Colors.white);
     return Flexible(
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 25.0),
         width: double.infinity,
         child: ElevatedButton(
           onPressed: () {},
-          style: style,
-          /*color: Colors.white,*/
+          style: btnStyle,
           child: const Text(
             'LOGIN',
             style: TextStyle(
