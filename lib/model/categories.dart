@@ -1,4 +1,4 @@
-class Category {
+abstract class Category {
   final String name;
   final int numOfCourses;
   final String image;
@@ -6,15 +6,18 @@ class Category {
   Category(this.name, this.numOfCourses, this.image);
 }
 
-List<Category> categories = categoriesData.map((item) => Category(item['name'] as String, item['courses'] as int, item['image'] as String)).cast<Category>().toList();
+class Categories extends Category{
+  final String name;
+  final int numOfCourses;
+  final String image;
 
-var categoriesData = [
-  {"name": "Marketing", 'courses': 17, 'image': "assets/images/marketing.png"},
-  {"name": "UX Design", 'courses': 25, 'image': "assets/images/ux_design.png"},
-  {
-    "name": "Photography",
-    'courses': 13,
-    'image': "assets/images/photography.png"
-  },
-  {"name": "Business", 'courses': 17, 'image': "assets/images/business.png"},
+  Categories(this.name, this.numOfCourses, this.image) : super(name, 0, image);
+}
+
+
+final categoriesData = [
+  Categories ('Marketing', 17, 'assets/images/marketing.png'),
+  Categories ('UX Design',  25, 'assets/images/ux_design.png'),
+  Categories ('Photography', 13, 'assets/images/photography.png'),
+  Categories ('Business', 17, 'assets/images/business.png'),
 ];

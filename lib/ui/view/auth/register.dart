@@ -1,7 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
+import 'package:ecourse/ui/shared/shared_styles.dart';
+import 'package:ecourse/ui/viewModels/signUp_model.dart';
 import 'package:ecourse/utils/constant.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:stacked/stacked.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -11,52 +13,87 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  late bool _agree = false;
 
-  late bool userHasTouchId;
-  bool _useTouchId = false;
+  final _registerFormKey = GlobalKey<FormState>();
 
-  final _formKey = GlobalKey<FormState>();
-  String? email;
-  String? username;
-  String? password;
-  String? confirmPassword;
-  final List<String?> errors =[];
+  final _nameTextController = TextEditingController();
+  final _emailTextController = TextEditingController();
+  final _passwordTextController = TextEditingController();
+  final _passwordSecondTextController = TextEditingController();
 
-  void addErr({String? err}){
-    if(!errors.contains(err)){
-      setState(() {
-        errors.add(err);
-      });
-    }
-  }
+  final _focusName = FocusNode();
+  final _focusEmail = FocusNode();
+  final _focusPassword = FocusNode();
+  final _focusPasswordSecond = FocusNode();
 
-  void removeError({String? err}) {
-    if (errors.contains(err)) {
-      setState(() {
-        errors.remove(err);
-      });
-    }
-  }
+  bool _isProcessing = false;
 
-
-  @override
-  void initState() {
-    super.initState();
-    getSecureStorage();
-  }
-
-
-  void getSecureStorage() async {
-    ///final isUsingBio = await storage.read(key: 'usingBiometric');
-    setState(() {
-      //userHasTouchId = isUsingBio == 'true';
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> users = FirebaseFirestore.instance.collection('users').snapshots();
+    return ViewModelBuilder<SignUpViewModel>.reactive(
+      viewModelBuilder: () => SignUpViewModel(),
+      builder: (context, model, child) =>
+          Scaffold(
+            body: AnnotatedRegion<SystemUiOverlayStyle>(
+              value: SystemUiOverlayStyle.light,
+              child: Container(
+                height: double.infinity,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0xFF73AEF5),
+                      Color(0xFF61A4F1),
+                      Color(0xFF478DE0),
+                      Color(0xFF398AE5),
+                    ],
+                    stops: [0.1, 0.4, 0.7, 0.9],
+                  ),
+                ),
+                child: Container(
+                    height: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 40.0,
+                    ),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(top: 50.0),
+                            child: Text(
+                              'Sign In',
+                              style: kTitleStyle,
+                            ),
+                          ),
+                          _buidForm(model),
+                        ],
+                      ),
+                    )
+                ),
+
+              ),
+            ),
+          ),
+    );
+  }
+
+  Widget _buidForm(SignUpViewModel model){
+    return Form(
+      key: _registerFormKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [],
+      ),
+
+    );
+  }
+
+}
+    /*final Stream<QuerySnapshot> users = FirebaseFirestore.instance.collection('users').snapshots();
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
@@ -204,7 +241,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 return "";
               }
             },
-            /*keyboardType: TextInputType.emailAddress,
+            *//*keyboardType: TextInputType.emailAddress,
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'CM Sans Serif',
@@ -218,7 +255,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               hintText: 'Enter your username',
               hintStyle: kHintTextStyle,
-            ),*/
+            ),*//*
           ),
         ),
       ],
@@ -368,3 +405,5 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
+*/
+

@@ -1,10 +1,23 @@
-import 'package:flutter/material.dart';
+
+const String SplashViewRoute = "SplashView";
+const String OnBoardViewRoute = "OnBoardView";
+const String LoginViewRoute = "LoginView";
+const String SignUpViewRoute = "SignUp";
+const String HomeViewRoute = "HomeView";
+const String CreatePostViewRoute = "CreatePostView";
+
+/*
 
 String SPLASH_SCREEN = 'SPLASH_SCREEN';
 String ONBOARDING_SCREEN = 'ONBOARDING_SCREEN';
 String LOGIN_SCREEN = 'LOGIN_SCREEN';
 String SIGNUP_SCREEN = 'SIGNUP_SCREEN';
 String NAV_SCREEN = 'NAV_SCREEN';
+String HOME_SCREEN = 'HOME_SCREEN';
+String STREAM_LIST_SCREEN = 'STREAM_LIST_SCREEN';
+String POPULAR_SCREEN = 'POPULAR_SCREEN';
+String PROFILE_SCREEN = 'PROFILE_SCREEN';
+
 
 
 //menu
@@ -31,7 +44,7 @@ const kBestSellerColor = Color(0xFFFFD073);
 const kGreenColor = Color(0xFF49CC96);
 
 const kHintTextStyle = TextStyle(
-  color: Colors.white54,
+  color: Colors.white,
   fontFamily: 'OpenSans',
 );
 
@@ -76,18 +89,18 @@ ButtonStyle btnStyle = ElevatedButton.styleFrom(
 
 
 const kHeadingextStyle = TextStyle(
-  fontSize: 28,
+  fontSize: 18,
   color: kTextColor,
   fontWeight: FontWeight.bold,
 );
 const kSubheadingextStyle = TextStyle(
-  fontSize: 24,
+  fontSize: 20,
   color: Color(0xFF61688B),
-  height: 2,
+  height: 1,
 );
 
 const kTitleTextStyle = TextStyle(
-  fontSize: 20,
+  fontSize: 16,
   color: kTextColor,
   fontWeight: FontWeight.bold,
 );
@@ -109,3 +122,7 @@ const String kMatchPassError = "Passwords don't match";
 const String kNamelNullError = "Please Enter your name";
 const String kPhoneNumberNullError = "Please Enter your phone number";
 const String kAddressNullError = "Please Enter your address";
+
+const Color blueColor = Color(0xCC2372F0);
+const Color iconBackgroundColor = Color(0xFF647082);
+final BorderRadius optionBorderRadius = BorderRadius.circular(8);*/

@@ -1,14 +1,43 @@
 import 'dart:async';
+import 'package:ecourse/ui/viewModels/splash_model.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
-import 'package:ecourse/utils/constant.dart';
-
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  SplashScreenState createState() => SplashScreenState();
+  Widget build(BuildContext context) {
+    return ViewModelBuilder<SplashViewModel>.reactive(
+      viewModelBuilder: () => SplashViewModel(),
+      onModelReady: (model) => model.handleStartUpLogic(),
+      builder: (context, model, child) => Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                width: 300,
+                height: 100,
+                child: Image.asset('assets/images/bakrie.png'),
+              ),
+              CircularProgressIndicator(
+                strokeWidth: 3,
+                valueColor: AlwaysStoppedAnimation(
+                  Theme.of(context).primaryColor,
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
+
+
+/*
 
 class SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
@@ -84,3 +113,4 @@ class SplashScreenState extends State<SplashScreen>
     super.dispose();
   }
 }
+*/
