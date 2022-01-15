@@ -1,15 +1,9 @@
 import 'package:ecourse/helper/validator.dart';
-import 'package:ecourse/services/auth.dart';
-import 'package:ecourse/services/firestore.dart';
-import 'package:ecourse/ui/home/home.dart';
 import 'package:ecourse/ui/shared/shared_styles.dart';
 import 'package:ecourse/ui/shared/ui_helpers.dart';
 import 'package:ecourse/ui/viewModels/login_model.dart';
 import 'package:ecourse/ui/widgets/busy_button.dart';
 import 'package:ecourse/ui/widgets/text_link.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stacked/stacked.dart';
@@ -32,29 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool _isProcessing = false;
 
-  /*FirebaseAuth _auth = FirebaseAuth.instance;
-
-
-
-
-  Future<FirebaseApp> _initializeFirebase() async {
-    FirebaseApp firebaseApp = await Firebase.initializeApp();
-
-    User? user = FirebaseAuth.instance.currentUser;
-
-    if (user != null) {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => HomeScreen(
-            user: user,
-          ),
-        ),
-      );
-    }
-
-    return firebaseApp;
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<LoginViewModel>.reactive(
@@ -76,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Padding(
-                      padding: EdgeInsets.only(top: 50.0),
+                      padding: EdgeInsets.only(top: 100.0, bottom: 50),
                       child: Text(
                         'Sign In',
                         style: kTitleStyle,
@@ -110,7 +81,16 @@ class _LoginScreenState extends State<LoginScreen> {
             validator: (value) => Validator.validateEmail(email: value),
             decoration: const InputDecoration(
               hintText: "Enter your Email",
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20.0),
+                ),
+                borderSide: BorderSide(
+                  width: 0,
+                  style: BorderStyle.none,
+                ),
+
+              ),
               filled: true,
               fillColor: Color(0xFF6CA8F1),
               contentPadding: EdgeInsets.only(top: 14.0),
@@ -123,8 +103,9 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
 
           // Password
-          const SizedBox(height: 10.0),
+          verticalSpaceMedium,
           const Text('Password', style: kLabelStyle),
+          verticalSpaceSmall,
           TextFormField(
             controller: _passwordController,
             focusNode: _focusPassword,
@@ -138,7 +119,16 @@ class _LoginScreenState extends State<LoginScreen> {
             validator: (value) => Validator.validatePassword(password: value),
             decoration: const InputDecoration(
               hintText: "Enter your Password",
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20.0),
+                ),
+                borderSide: BorderSide(
+                  width: 0,
+                  style: BorderStyle.none,
+                ),
+
+              ),
               filled: true,
               fillColor: Color(0xFF6CA8F1),
               contentPadding: EdgeInsets.only(top: 14.0),
@@ -150,14 +140,15 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
 
-          verticalSpaceMedium,
+          verticalSpaceSmall,
           _buildForgotPasswordBtn(model),
-          verticalSpaceSmall,
+          verticalSpaceLarge,
           _buildLoginBtn(model),
+          verticalSpaceLarge,
           _buildSignInWithText(model),
-          verticalSpaceSmall,
+          verticalSpaceLarge,
           _buildSocialBtnRow(),
-          verticalSpaceSmall,
+          verticalSpaceLarge,
           _buildSignupBtn(model)
         ],
       ),
@@ -218,10 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
               margin: const EdgeInsets.only(bottom: 5, top: 5),
               child: const Text(
                 '- OR -',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: kSubtitleStyle,
               ),
             ),
             Container(
@@ -229,7 +217,7 @@ class _LoginScreenState extends State<LoginScreen> {
               margin: const EdgeInsets.only(top: 5),
               child: const Text(
                 'Sign in with',
-                style: kLabelStyle,
+                style: kSubtitleStyle,
               ),
             ),
           ],

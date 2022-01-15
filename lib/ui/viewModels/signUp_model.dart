@@ -1,4 +1,5 @@
 import 'package:ecourse/services/auth.dart';
+import 'package:ecourse/services/firestore.dart';
 import 'package:ecourse/services/navigation.dart';
 import 'package:ecourse/shared/dialog_services.dart';
 import '../../locator.dart';
@@ -13,13 +14,15 @@ class SignUpViewModel extends BaseModel {
     required String email,
     required String password,
     required String fullName,
+    required String username,
   }) async {
     setBusy(true);
 
     var result = await _authenticationService.signUpWithEmail(
         email: email,
-        password: password,
-        fullName: fullName);
+        password: password, username: username, fullName: fullName);
+
+
 
     setBusy(false);
 

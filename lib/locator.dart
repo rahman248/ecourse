@@ -1,6 +1,7 @@
 import 'package:ecourse/services/auth.dart';
 import 'package:ecourse/services/firestore.dart';
 import 'package:ecourse/services/navigation.dart';
+import 'package:ecourse/services/youtube.dart';
 import 'package:ecourse/shared/dialog_services.dart';
 import 'package:get_it/get_it.dart';
 
@@ -11,4 +12,5 @@ void setupLocator() {
   locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => AuthService());
   locator.registerLazySingleton(() => FirestoreService());
+  locator.registerLazySingleton(() => APIService());
 }

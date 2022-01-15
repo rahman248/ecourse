@@ -42,4 +42,22 @@ class Validator{
 
     return null;
   }
+
+  static String? validateSecondPassword({required String? password, required String? passwordSecond}) {
+    if (passwordSecond == null) {
+      return null;
+    }
+
+    if (passwordSecond.isEmpty) {
+      return 'Confirmation Password can\'t be empty';
+    }
+    else if (passwordSecond != password) {
+      return 'Your Confirmation password not same';
+    }
+    else if (passwordSecond.length < 6) {
+      return 'Enter a password with length at least 6';
+    }
+
+    return null;
+  }
 }

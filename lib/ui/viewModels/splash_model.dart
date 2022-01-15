@@ -10,13 +10,19 @@ class SplashViewModel extends BaseModel{
   final NavigationService _navigationService = locator<NavigationService>();
 
   Future handleStartUpLogic() async {
-    //bool hasLoggedInUser = (await _authenticationService.isUserLoggedIn()) as bool;
-    bool newStartInUser = (await _authenticationService.isNewStartUser()) as bool;
+
+    bool newStartInUser = await _authenticationService.isNewStartUser();
 
     if (newStartInUser){
-      _navigationService.navigateTo(OnBoardViewRoute);
+      Future.delayed(const Duration(seconds: 3), () {
+        _navigationService.navigateTo(OnBoardViewRoute);
+      });
+
     } else {
-      _navigationService.navigateTo(LoginViewRoute);
+      Future.delayed(const Duration(seconds: 3), () {
+        _navigationService.navigateTo(LoginViewRoute);
+      });
+
     }
 
     /*if (hasLoggedInUser) {

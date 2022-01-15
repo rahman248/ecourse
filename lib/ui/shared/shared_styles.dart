@@ -18,7 +18,13 @@ const EdgeInsets largeFieldPadding =
 EdgeInsets.symmetric(horizontal: 15, vertical: 15);
 
 // Text Variables
-const buttonTitleTextStyle = TextStyle(fontWeight: FontWeight.w700, color: Colors.white);
+const buttonTitleTextStyle = TextStyle(
+  color: Color(0xFF527DAA),
+  letterSpacing: 1.5,
+  fontSize: 18.0,
+  fontWeight: FontWeight.bold,
+  fontFamily: 'CM Sans Serif',
+);
 
 const kHintTextStyle = TextStyle(
   color: Colors.white,
@@ -38,8 +44,23 @@ const kTitleStyle = TextStyle(
   height: 1.5,
 );
 
+const kTitleTollbarStyle = TextStyle(
+  color: Colors.black,
+  fontFamily: 'CM Sans Serif',
+  fontSize: 26.0,
+  height: 1.5,
+);
+
 const kSubtitleStyle = TextStyle(
   color: Colors.white,
   fontSize: 18.0,
   height: 1.2,
+);
+
+
+const kPrimaryColor = Color(0xFF527DAA);
+const kBackButtonShape = RoundedRectangleBorder(
+  borderRadius: BorderRadius.only(
+    topRight: Radius.circular(30),
+  ),
 );

@@ -10,9 +10,7 @@ import 'package:flutter/services.dart';
 class FirestoreService {
   final CollectionReference _usersCollectionReference = FirebaseFirestore.instance.collection('users');
   final CollectionReference _postsCollectionReference = FirebaseFirestore.instance.collection('posts');
-
-  final StreamController<List<Post>> _postsController =
-  StreamController<List<Post>>.broadcast();
+  final StreamController<List<Post>> _postsController = StreamController<List<Post>>.broadcast();
 
 
 
@@ -20,7 +18,6 @@ class FirestoreService {
     try {
       await _usersCollectionReference.doc(user.id).set(user.toJson());
     } catch (e) {
-      // TODO: Find or create a way to repeat error handling without so much repeated code
       if (e is PlatformException) {
         return e.message;
       }
@@ -29,7 +26,7 @@ class FirestoreService {
     }
   }
 
-  Future getUser(String uid) async {
+  Future getUser(String? uid) async {
     try {
       var userData = await _usersCollectionReference.doc(uid).get();
       return Users.fromData(userData.data() as Map<String,dynamic>);

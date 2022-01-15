@@ -1,5 +1,8 @@
+import 'package:ecourse/helper/validator.dart';
 import 'package:ecourse/ui/shared/shared_styles.dart';
+import 'package:ecourse/ui/shared/ui_helpers.dart';
 import 'package:ecourse/ui/viewModels/signUp_model.dart';
+import 'package:ecourse/ui/widgets/busy_button.dart';
 import 'package:ecourse/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,11 +19,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   final _registerFormKey = GlobalKey<FormState>();
 
+  final _fullnameTextController = TextEditingController();
   final _nameTextController = TextEditingController();
   final _emailTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
   final _passwordSecondTextController = TextEditingController();
 
+  final _focusFullname = FocusNode();
   final _focusName = FocusNode();
   final _focusEmail = FocusNode();
   final _focusPassword = FocusNode();
@@ -40,32 +45,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Container(
                 height: double.infinity,
                 width: double.infinity,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xFF73AEF5),
-                      Color(0xFF61A4F1),
-                      Color(0xFF478DE0),
-                      Color(0xFF398AE5),
-                    ],
-                    stops: [0.1, 0.4, 0.7, 0.9],
-                  ),
-                ),
+                decoration: boxDecoration,
                 child: Container(
                     height: double.infinity,
                     padding: const EdgeInsets.symmetric(
                       horizontal: 40.0,
                     ),
+
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Padding(
-                            padding: EdgeInsets.only(top: 50.0),
+                            padding: EdgeInsets.only(top: 100.0, bottom: 50),
                             child: Text(
-                              'Sign In',
+                              'REGISTER',
                               style: kTitleStyle,
                             ),
                           ),
@@ -86,9 +80,205 @@ class _SignUpScreenState extends State<SignUpScreen> {
       key: _registerFormKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [],
+        children: [
+          const Text('Full Name', style: kLabelStyle),
+          verticalSpaceSmall,
+          TextFormField(
+            controller: _fullnameTextController,
+            focusNode: _focusFullname,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(30),
+            ],
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            style: const TextStyle(color: Colors.white),
+            validator: (value) => Validator.validateName(name: value),
+            decoration: const InputDecoration(
+              hintText: "Enter your full name",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20.0),
+                ),
+                borderSide: BorderSide(
+                  width: 0,
+                  style: BorderStyle.none,
+                ),
+
+              ),
+              filled: true,
+              fillColor: Color(0xFF6CA8F1),
+              contentPadding: EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+
+          verticalSpaceMedium,
+          const Text('Username', style: kLabelStyle),
+          verticalSpaceSmall,
+          TextFormField(
+            controller: _nameTextController,
+            focusNode: _focusName,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(30),
+            ],
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            style: const TextStyle(color: Colors.white),
+            validator: (value) => Validator.validateName(name: value),
+            decoration: const InputDecoration(
+              hintText: "Enter your username",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20.0),
+                ),
+                borderSide: BorderSide(
+                  width: 0,
+                  style: BorderStyle.none,
+                ),
+
+              ),
+              filled: true,
+              fillColor: Color(0xFF6CA8F1),
+              contentPadding: EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+          verticalSpaceMedium,
+          const Text('Email', style: kLabelStyle),
+          verticalSpaceSmall,
+          TextFormField(
+            controller: _emailTextController,
+            focusNode: _focusEmail,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(30),
+            ],
+            keyboardType: TextInputType.emailAddress,
+            autofocus: false,
+            style: const TextStyle(color: Colors.white),
+            validator: (value) => Validator.validateEmail(email: value),
+            decoration: const InputDecoration(
+              hintText: "Enter your Email",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20.0),
+                ),
+                borderSide: BorderSide(
+                  width: 0,
+                  style: BorderStyle.none,
+                ),
+
+              ),
+              filled: true,
+              fillColor: Color(0xFF6CA8F1),
+              contentPadding: EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.email,
+                color: Colors.white,
+              ),
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+          verticalSpaceMedium,
+          const Text('Password', style: kLabelStyle),
+          verticalSpaceSmall,
+          TextFormField(
+            controller: _passwordTextController,
+            focusNode: _focusPassword,
+            obscureText: true,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(30),
+            ],
+            keyboardType: TextInputType.visiblePassword,
+            autofocus: false,
+            style: const TextStyle(color: Colors.white),
+            validator: (value) => Validator.validatePassword(password: value),
+            decoration: const InputDecoration(
+              hintText: "Enter your Password",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20.0),
+                ),
+                borderSide: BorderSide(
+                  width: 0,
+                  style: BorderStyle.none,
+                ),
+
+              ),
+              filled: true,
+              fillColor: Color(0xFF6CA8F1),
+              contentPadding: EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.lock,
+                color: Colors.white,
+              ),
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+          verticalSpaceMedium,
+          const Text('Retype Password', style: kLabelStyle),
+          verticalSpaceSmall,
+          TextFormField(
+            controller: _passwordSecondTextController,
+            focusNode: _focusPassword,
+            obscureText: true,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(30),
+            ],
+            keyboardType: TextInputType.visiblePassword,
+            autofocus: false,
+            style: const TextStyle(color: Colors.white),
+            validator: (value) => Validator.validateSecondPassword(password: _passwordTextController.text, passwordSecond: value),
+            decoration: const InputDecoration(
+              hintText: "Confirm your password",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20.0),
+                ),
+                borderSide: BorderSide(
+                  width: 0,
+                  style: BorderStyle.none,
+                ),
+
+              ),
+              filled: true,
+              fillColor: Color(0xFF6CA8F1),
+              contentPadding: EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.lock,
+                color: Colors.white,
+              ),
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+          verticalSpaceMedium,
+          _buildRegisterBtn(model),
+
+        ],
       ),
 
+    );
+  }
+
+  Widget _buildRegisterBtn(SignUpViewModel model) {
+    return BusyButton(
+      title: 'Login',
+      busy: model.busy,
+      onPressed: () {
+        model.signUp(
+          email: _emailTextController.text,
+          password: _passwordTextController.text,
+          fullName: _fullnameTextController.text,
+          username: _nameTextController.text
+        );
+      },
     );
   }
 

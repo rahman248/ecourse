@@ -1,5 +1,5 @@
 
-import 'package:ecourse/ui/home/home.dart';
+import 'package:ecourse/ui/view/home/home.dart';
 import 'package:ecourse/ui/view/auth/login.dart';
 import 'package:ecourse/ui/view/auth/register.dart';
 import 'package:ecourse/ui/view/onboarding.dart';

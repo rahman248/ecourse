@@ -1,3 +1,4 @@
+import 'package:ecourse/ui/shared/shared_styles.dart';
 import 'package:flutter/material.dart';
 
 class TextLink extends StatelessWidget {
@@ -9,9 +10,11 @@ class TextLink extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPressed,
-      child: Text(
-        text,
-        style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+      child: Center(
+        child: Text(
+          text,
+          style: kSubtitleStyle
+        ),
       ),
     );
   }

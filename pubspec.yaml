@@ -59,6 +59,9 @@ dependencies:
   get_it: ^7.2.0
   stacked: ^2.2.7+1
   stacked_services: ^0.8.16
+  line_icons: ^2.0.1
+  http: ^0.13.4
+  youtube_player_flutter: ^8.0.0
 
 dev_dependencies:
   flutter_test:

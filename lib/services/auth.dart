@@ -1,7 +1,7 @@
-
 import 'package:ecourse/model/users.dart';
 import 'package:ecourse/services/firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../locator.dart';
@@ -14,20 +14,24 @@ class AuthService {
 
 
 
-  User? _currentUser;
-  User? get currentUser => _currentUser;
+  Users? _currentUser;
+  Users? get currentUser => _currentUser;
 
 
   Future<bool> isNewStartUser() async {
     _pref = await SharedPreferences.getInstance();
     final isFirst = _pref.getBool('isFirstInstall') ?? true;
-    print("get value is:>> "+isFirst.toString());
+    if (kDebugMode) {
+      print("get value is:>> "+isFirst.toString());
+    }
     return isFirst;
   }
 
   Future setIsFirst(bool isFirstInstall) async {
     final isFirst = _pref.setBool('isFirstTime', isFirstInstall);
-    print("get value is:>> "+isFirstInstall.toString());
+    if (kDebugMode) {
+      print("get value is:>> ${isFirstInstall.toString()} ");
+    }
 
     return isFirst;
 
@@ -53,7 +57,8 @@ class AuthService {
   Future signUpWithEmail({
     required String email,
     required String password,
-    required String fullName
+    required String fullName,
+    required String username
   }) async {
     try {
       var authResult = await _firebaseAuth.createUserWithEmailAndPassword(
@@ -61,14 +66,17 @@ class AuthService {
         password: password,
       );
 
-      // create a new user profile on firestore
-      _currentUser = Users(
-        id: authResult.user?.uid as String,
-        email: email,
-        fullName: fullName,
-      ) as User?;
 
-      await _firestoreService.createUser(_currentUser as Users);
+      // create a new user profile on firestore
+      var userDb = Users(
+        id: authResult.user?.uid as String,
+        email: authResult.user?.email,
+        fullName: fullName,
+        username : username,
+        password : password
+      );
+
+      await _firestoreService.createUser(userDb);
 
       return authResult.user != null;
     } catch (e) {
@@ -86,12 +94,12 @@ class AuthService {
   }
 
 
-  Future _populateCurrentUser(User? user) async {
+  Future _populateCurrentUser(User? users) async {
 
-    if (user != null){
-      _currentUser = await _firestoreService.getUser(user.uid);
+    if (users != null){
+      _currentUser?.id = await _firestoreService.getUser(users.uid);
     } else{
-      _currentUser = null;
+      _currentUser?.id = null;
     }
 
   }
