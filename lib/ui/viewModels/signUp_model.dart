@@ -1,7 +1,7 @@
 import 'package:ecourse/services/auth.dart';
-import 'package:ecourse/services/firestore.dart';
 import 'package:ecourse/services/navigation.dart';
 import 'package:ecourse/shared/dialog_services.dart';
+import 'package:ecourse/utils/constant.dart';
 import '../../locator.dart';
 import 'base_model.dart';
 
@@ -28,7 +28,11 @@ class SignUpViewModel extends BaseModel {
 
     if (result is bool) {
       if (result) {
-        _navigationService.navigateTo("");
+        await _dialogService.showDialog(
+          title: 'Welcome back $fullName',
+          description: 'General sign up failure. Please try again later',
+        );
+        _navigationService.navigateTo(LoginViewRoute);
       } else {
         await _dialogService.showDialog(
           title: 'Sign Up Failure',
@@ -41,5 +45,9 @@ class SignUpViewModel extends BaseModel {
         description: result,
       );
     }
+  }
+
+  void navigateToLogin() {
+    _navigationService.navigateTo(LoginViewRoute);
   }
 }

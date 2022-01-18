@@ -29,12 +29,7 @@ class AuthService {
 
   Future setIsFirst(bool isFirstInstall) async {
     final isFirst = _pref.setBool('isFirstTime', isFirstInstall);
-    if (kDebugMode) {
-      print("get value is:>> ${isFirstInstall.toString()} ");
-    }
-
     return isFirst;
-
   }
 
 
@@ -86,11 +81,16 @@ class AuthService {
 
 
 
-
   Future<bool> isUserLoggedIn() async {
     var user = _firebaseAuth.currentUser;
     await _populateCurrentUser(user);
     return user != null;
+  }
+
+  Future<User?> userData() async {
+    var user = _firebaseAuth.currentUser;
+    await _populateCurrentUser(user);
+    return user;
   }
 
 

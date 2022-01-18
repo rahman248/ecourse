@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "488532459244",
-    "project_id": "course-flutter-f2cf7",
-    "storage_bucket": "course-flutter-f2cf7.appspot.com"
+    "project_number": "411151023101",
+    "project_id": "e-learning-557c4",
+    "storage_bucket": "e-learning-557c4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:488532459244:android:8965be5291f72438326fc9",
+        "mobilesdk_app_id": "1:411151023101:android:bba34d1a833ebf897b3794",
         "android_client_info": {
           "package_name": "com.example.ecourse"
         }
       },
       "oauth_client": [
         {
-          "client_id": "488532459244-m6vh3lnrj8shbdi2emhdu8564lia3a4n.apps.googleusercontent.com",
+          "client_id": "411151023101-3dgln99hnn7fa309mj0o215oj71nhsnp.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.ecourse",
-            "certificate_hash": "8d66c0fdc4f4491366f391eab808e0208aceca6f"
+            "certificate_hash": "67da4c3ecc7997fa932fa8760dbf7bd03c84ab9c"
           }
         },
         {
-          "client_id": "488532459244-c66nf71cnndgurvd895j484us3am2eic.apps.googleusercontent.com",
+          "client_id": "411151023101-e9ok8as58tiff2le9ik4ms79hr738u5g.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBWB4mC3sTqNO7FYLrpr_PIJMAXaybPuwE"
+          "current_key": "AIzaSyDNupOGCuxhUbhJ2pvyyUCJ1pONx5jc0vY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "488532459244-c66nf71cnndgurvd895j484us3am2eic.apps.googleusercontent.com",
+              "client_id": "411151023101-e9ok8as58tiff2le9ik4ms79hr738u5g.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

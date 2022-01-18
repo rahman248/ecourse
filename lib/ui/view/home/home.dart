@@ -25,12 +25,12 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, model, child) => Scaffold(
         extendBody: true,
         body: listWidgets[currentIndex],
-        bottomNavigationBar: _BottomNavView(),
+        bottomNavigationBar: _bottomNavView(),
       ),
     );
   }
 
-  Widget _BottomNavView() {
+  Widget _bottomNavView() {
     double displayWidth = MediaQuery.of(context).size.width;
     return Container(
       margin: EdgeInsets.all(displayWidth * .05),
@@ -100,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         AnimatedOpacity(
                           opacity: index == currentIndex ? 1 : 0,
-                          duration: Duration(seconds: 1),
+                          duration: const Duration(seconds: 1),
                           curve: Curves.fastLinearToSlowEaseIn,
                           child: Text(
                             index == currentIndex

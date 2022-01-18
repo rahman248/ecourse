@@ -3,14 +3,19 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecourse/model/category.dart';
 import 'package:ecourse/model/post.dart';
 import 'package:ecourse/model/users.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 class FirestoreService {
   final CollectionReference _usersCollectionReference = FirebaseFirestore.instance.collection('users');
   final CollectionReference _postsCollectionReference = FirebaseFirestore.instance.collection('posts');
+  final CollectionReference _categoriesCollectionReference = FirebaseFirestore.instance.collection('category');
   final StreamController<List<Post>> _postsController = StreamController<List<Post>>.broadcast();
+  final StreamController<List<Category>> _categoryController = StreamController<List<Category>>.broadcast();
+  final StreamController<Users> _usersController = StreamController<Users>.broadcast();
 
 
 
@@ -26,10 +31,14 @@ class FirestoreService {
     }
   }
 
-  Future getUser(String? uid) async {
+  Future getUser(String uid) async {
     try {
       var userData = await _usersCollectionReference.doc(uid).get();
+      if (kDebugMode) {
+        print("get value is:>> ${userData.data()} ");
+      }
       return Users.fromData(userData.data() as Map<String,dynamic>);
+
     } catch (e) {
       // TODO: Find or create a way to repeat error handling without so much repeated code
       if (e is PlatformException) {
@@ -89,6 +98,8 @@ class FirestoreService {
     return _postsController.stream;
   }
 
+
+
   Future deletePost(String documentId) async {
     await _postsCollectionReference.doc(documentId).delete();
   }
@@ -98,6 +109,25 @@ class FirestoreService {
       await _postsCollectionReference
           .doc(post.documentId)
           .update(post.toMap());
+    } catch (e) {
+      // TODO: Find or create a way to repeat error handling without so much repeated code
+      if (e is PlatformException) {
+        return e.message;
+      }
+
+      return e.toString();
+    }
+  }
+
+  Future getCategories() async {
+    try {
+      var categoriesDocumentSnapshot = await _categoriesCollectionReference.get();
+      if (categoriesDocumentSnapshot.docs.isNotEmpty) {
+        return categoriesDocumentSnapshot.docs
+            .map((snapshot) => Categories.fromMap(snapshot.data as Map<String,dynamic>))
+            .where((mappedItem) => mappedItem?.title != null)
+            .toList();
+      }
     } catch (e) {
       // TODO: Find or create a way to repeat error handling without so much repeated code
       if (e is PlatformException) {

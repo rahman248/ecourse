@@ -12,15 +12,23 @@ class SplashViewModel extends BaseModel{
   Future handleStartUpLogic() async {
 
     bool newStartInUser = await _authenticationService.isNewStartUser();
+    var isUsers = await _authenticationService.isUserLoggedIn();
+    bool hasLoggedInUser;
+    if (isUsers){
+      hasLoggedInUser = true;
+    } else {
+      hasLoggedInUser = false;
+    }
 
-    if (newStartInUser){
+
+    if (newStartInUser && !hasLoggedInUser){
       Future.delayed(const Duration(seconds: 3), () {
         _navigationService.navigateTo(OnBoardViewRoute);
       });
 
     } else {
       Future.delayed(const Duration(seconds: 3), () {
-        _navigationService.navigateTo(LoginViewRoute);
+        _navigationService.navigateTo(HomeViewRoute);
       });
 
     }

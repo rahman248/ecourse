@@ -8,11 +8,11 @@ class Users {
   Users({this.id,  this.email, this.fullName, this.username, this.password });
 
   Users.fromData(Map<String, dynamic> data)
-      : id = data['id'],
-        email = data['email'],
-        fullName = data['fullName'],
-        username = data['username'],
-        password = data['password'];
+      : id = data['id'] ?? '',
+        email = data['email'] ?? '',
+        fullName = data['fullName'] ?? '',
+        username = data['username'] ?? '',
+        password = data['password'] ?? '';
 
 
   Map<String, dynamic> toJson() {

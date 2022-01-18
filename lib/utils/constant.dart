@@ -4,7 +4,15 @@ const String OnBoardViewRoute = "OnBoardView";
 const String LoginViewRoute = "LoginView";
 const String SignUpViewRoute = "SignUp";
 const String HomeViewRoute = "HomeView";
-const String CreatePostViewRoute = "CreatePostView";
+const String CourseInfoViewRoute = "CourseInfoScreen";
+const String ProfileViewRoute = 'ProfileScreen';
+const String PopularViewRoute= 'PopularScreen';
+
+enum CategoryType {
+  ui,
+  coding,
+  basic,
+}
 
 const List online_data_one = [
   {

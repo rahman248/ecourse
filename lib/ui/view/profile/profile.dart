@@ -16,22 +16,19 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    var mHeight = MediaQuery.of(context).size.height;
-    var mWidth = MediaQuery.of(context).size.width;
-    var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
     return  ViewModelBuilder<ProfileViewModel>.reactive(
       viewModelBuilder: () => ProfileViewModel(),
       builder: (context, model, child) => Scaffold(
-          appBar: appBar(),
+          appBar: appBar('Profile'),
           body: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: Column(
               children: [
-                const ProfilePic(),
+                ProfilePic(),
                 SizedBox(height: 20),
                 ProfileMenu(
                   text: "My Account",
-                  icon: "assets/icons/profile.svg",
+                  icon: "assets/icons/User Icon.svg",
                   press: () => {},
                 ),
                 ProfileMenu(
@@ -41,7 +38,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 ProfileMenu(
                   text: "Settings",
-                  icon: "assets/icons/settings.svg",
+                  icon: "assets/icons/Settings.svg",
                   press: () {},
                 ),
                 ProfileMenu(
@@ -51,48 +48,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 ProfileMenu(
                   text: "Log Out",
-                  icon: "assets/icons/logout.svg",
-                  press: () {},
+                  icon: "assets/icons/Log out.svg",
+                  press: () => model.sigOut(),
                 ),
+
               ],
             ),
           ),
       ),
     );
   }
-
-
-  AppBar _appBar(){
-    return AppBar(
-      title: Text("Hello Appbar"),
-      leading: GestureDetector(
-        onTap: () { /* Write listener code here */ },
-        child: Icon(
-          Icons.menu,  // add custom icons also
-        ),
-      ),
-      actions: <Widget>[
-        Padding(
-            padding: EdgeInsets.only(right: 20.0),
-            child: GestureDetector(
-              onTap: () {},
-              child: Icon(
-                Icons.search,
-                size: 26.0,
-              ),
-            )
-        ),
-        Padding(
-            padding: EdgeInsets.only(right: 20.0),
-            child: GestureDetector(
-              onTap: () {},
-              child: Icon(
-                  Icons.more_vert
-              ),
-            )
-        ),
-      ],
-    );
-  }
-
 }

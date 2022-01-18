@@ -6,15 +6,20 @@ import 'package:ecourse/ui/router.dart';
 import 'package:ecourse/ui/view/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'locator.dart';
 
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  setupLocator();
-  runApp(const MyApp());
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) async {
+    await Firebase.initializeApp();
+    setupLocator();
+    runApp(const MyApp());
+  });
+
 }
 
 class MyApp extends StatelessWidget {

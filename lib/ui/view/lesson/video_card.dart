@@ -52,7 +52,7 @@ class VideoCard extends StatelessWidget {
             ListTile(
               leading: CircleAvatar(
                 backgroundColor: Colors.white,
-                radius: 35.0,
+                radius: 15.0,
                 backgroundImage: NetworkImage(video.thumbnailUrl),
               ),
               title: Text(
@@ -67,7 +67,7 @@ class VideoCard extends StatelessWidget {
         ),
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context){
-            return VideoScreen(id: video.id);
+            return VideoScreen(video: video,);
           }));
         },
       )

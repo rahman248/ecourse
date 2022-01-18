@@ -20,7 +20,7 @@ class _LessonScreenState extends State<LessonScreen> {
     return ViewModelBuilder<LessonViewModel>.reactive(
       viewModelBuilder: () => LessonViewModel(),
       builder: (context, model, child) => Scaffold(
-        appBar: appBar(),
+        appBar: appBar('Learning Path'),
         body: SafeArea(
           child: FutureBuilder<List<Video>>(
             future: model.initPlayList(),

@@ -5,5 +5,7 @@ import 'base_model.dart';
 class ProfileViewModel extends BaseModel{
   final NavigationService _navigationService = locator<NavigationService>();
 
+  sigOut() {}
+
 
 }

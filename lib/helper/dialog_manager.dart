@@ -6,7 +6,7 @@ import '../locator.dart';
 
 class DialogManager extends StatefulWidget {
   final Widget child;
-  DialogManager({Key? key, required this.child}) : super(key: key);
+  const DialogManager({Key? key, required this.child}) : super(key: key);
 
   @override
   _DialogManagerState createState() => _DialogManagerState();
@@ -36,7 +36,7 @@ class _DialogManagerState extends State<DialogManager> {
           actions: <Widget>[
             if (isConfirmationDialog)
               ElevatedButton (
-                child: Text(request.cancelTitle),
+                child: Text(request.cancelTitle ?? ''),
                 onPressed: () {
                   _dialogService
                       .dialogComplete(DialogResponse(confirmed: false, fieldTwo: '', fieldOne: ''));

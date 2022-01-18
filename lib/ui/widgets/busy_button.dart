@@ -25,7 +25,7 @@ class _BusyButtonState extends State<BusyButton> {
       onTap: widget.onPressed,
       child: InkWell(
         child: AnimatedContainer(
-          height: widget.busy ? 40 : null,
+          height: widget.busy ? 48 : null,
           width: widget.busy ? double.infinity : null,
           duration: const Duration(milliseconds: 300),
           alignment: Alignment.center,
@@ -40,7 +40,7 @@ class _BusyButtonState extends State<BusyButton> {
           )
               : const CircularProgressIndicator(
               strokeWidth: 2,
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
         ),
       ),
     );

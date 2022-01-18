@@ -3,6 +3,8 @@ import 'package:ecourse/ui/view/home/home.dart';
 import 'package:ecourse/ui/view/auth/login.dart';
 import 'package:ecourse/ui/view/auth/register.dart';
 import 'package:ecourse/ui/view/onboarding.dart';
+import 'package:ecourse/ui/view/popular/popular.dart';
+import 'package:ecourse/ui/view/profile/profile.dart';
 import 'package:ecourse/utils/constant.dart';
 import 'package:flutter/material.dart';
 
@@ -31,11 +33,22 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         routeName: settings.name as String,
         viewToShow: const HomeScreen(),
       );
-    /*case CreatePostViewRoute:
+    case ProfileViewRoute:
+      return _getPageRoute(
+        routeName: settings.name as String,
+        viewToShow: const ProfileScreen(),
+      );
+    case PopularViewRoute:
+
+      return _getPageRoute(
+        routeName: settings.name as String,
+        viewToShow: const PopularScreen(),
+      );
+/*    case CategoryViewRoute:
       var postToEdit = settings.arguments as Post;
       return _getPageRoute(
         routeName: settings.name as String,
-        viewToShow: CreatePostView(
+        viewToShow: CreateCategoryView(
           edittingPost: postToEdit,
         ),
       );*/

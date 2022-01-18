@@ -14,6 +14,7 @@ class OnBoardingViewModel extends BaseModel{
   final NavigationService _navigationService = locator<NavigationService>();
 
   Future handleOnBoardLogic() async {
+    setBusy(true);
     var isUsers = await _authenticationService.isUserLoggedIn();
     bool hasLoggedInUser;
     if (isUsers){
@@ -27,7 +28,7 @@ class OnBoardingViewModel extends BaseModel{
     } else {
       _navigationService.navigateTo(LoginViewRoute);
     }
-
+    setBusy(false);
   }
 
   Future<void> setStoreFirstTime(bool isFirstTime) async {
